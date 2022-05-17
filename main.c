@@ -16,6 +16,8 @@ int main(void){
 
     printf("Tamaño de la lista: %d\n",longitudLista(lista));
 
+    lista = borrarValorRecurrente(lista, 7);
+    muestraLista(lista);
 
 
 

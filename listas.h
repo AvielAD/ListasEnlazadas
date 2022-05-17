@@ -108,4 +108,69 @@ TipoLista borrarListaCola(TipoLista lista){
 }
 
 //Busqueda de un elemento
-extern int 
+extern int estaEnLista(TipoLista lista, int valor);
+
+int estaEnLista(TipoLista lista, int valor){
+    struct Nodo *aux;
+
+    for(aux=lista; aux!=NULL; aux=aux->sig){
+        if(aux->numEntero==valor){
+            return 1;
+        }
+        return 0;
+    }
+}
+
+//Borrado primer ocurrencia elemento
+
+extern TipoLista borrarPrimerOcurrencia(TipoLista lista, int valor);
+
+TipoLista borrarPrimerOcurrencia(TipoLista lista, int valor){
+    struct Nodo * aux, *atras;
+    for(atras=NULL, aux=lista; aux!=NULL; atras=aux, aux=aux->sig){
+        if(atras==NULL){
+            lista=aux->sig;
+        }else{
+            atras->sig=aux->sig;
+            free(aux);
+            return lista;
+        }
+    }
+    return lista;
+}
+
+//Borrado Elemento recurrente en lista
+
+extern TipoLista borrarValorRecurrente(TipoLista  lista, int valor);
+
+TipoLista borrarValorRecurrente(TipoLista lista, int valor){
+    struct Nodo * aux, *atras;
+
+    atras=NULL;
+    aux=lista;
+    while(aux!=NULL){
+        if(aux->numEntero==valor){
+            if(atras==NULL){
+                lista=aux->sig;
+            }
+            else{
+                atras->sig=aux->sig;
+            }
+            
+            free(aux);
+
+            if(atras==NULL){
+                aux=lista;
+            }
+            else{
+                aux=atras->sig;
+            }
+
+        }
+        else{
+            atras=aux;
+            aux=aux->sig;
+        }
+    }
+    return lista;
+}
