@@ -95,7 +95,7 @@ TipoLista borrarListaCola(TipoLista lista){
     struct Nodo *aux, *atras;
 
     if(lista != NULL){
-        for(atras=NULL, aux=lista; aux->sig!=NULL; atras=aux, aux->sig);
+        for(atras=NULL, aux=lista; aux->sig!=NULL; atras=aux, aux=aux->sig);
         free(aux);
         if(atras==NULL){
             lista=NULL;
